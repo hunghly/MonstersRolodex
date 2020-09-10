@@ -3,31 +3,37 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
-
   constructor() {
     super();
+
+    // By default, the this.state also gives us this.setState
     this.state = {
-      string: 'Hello Hung Ly'
-    }
+      monsters: [
+        {
+          id: 1,
+          name: "Frankenstein",
+        },
+        {
+          id: 2,
+          name: "Dracula",
+        },
+        {
+          id: 3,
+          name: "Zombie",
+        },
+      ],
+    };
   }
 
   render() {
+    console.log("====================================");
+    console.log(this.state);
+    console.log("====================================");
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-           {this.state.string}
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.monsters.map((monster) => {
+          return <h1 key={monster.id}>{monster.name}</h1>;
+        })}
       </div>
     );
   }
