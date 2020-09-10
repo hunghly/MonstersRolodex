@@ -8,21 +8,18 @@ class App extends Component {
 
     // By default, the this.state also gives us this.setState
     this.state = {
-      monsters: [
-        {
-          id: 1,
-          name: "Frankenstein",
-        },
-        {
-          id: 2,
-          name: "Dracula",
-        },
-        {
-          id: 3,
-          name: "Zombie",
-        },
-      ],
+      monsters: [],
     };
+  }
+
+  /* The componentDidMount function is called once when React renders the DOM the first time */
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then((users)=>{
+      console.log(users);
+      return this.setState({monsters: users})
+    })
   }
 
   render() {
