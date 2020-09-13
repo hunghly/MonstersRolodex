@@ -24,9 +24,19 @@ class App extends Component {
   }
 
   render() {
-    // console.log('====================================');
-    // console.log(this.state);
-    // console.log('====================================');
+
+    const {monsters, searchField} = this.state;
+
+    const filteredMonster = monsters.filter((monster)=>{
+      if(monster.name.toLowerCase().includes(searchField.toLowerCase())) {
+        return monster;
+      }
+    })
+
+    console.log('====================================');
+    console.log("filtered monsters: " + filteredMonster);
+    console.log('====================================');
+
     return (
       <div className="App">
         {/* Set State is an Asynchronous event so we have to do any outputs after the rerender or you can pass a callback as the second parameter of the setState */}
@@ -39,7 +49,7 @@ class App extends Component {
             );
           }}
         />
-        <CardList monsters={this.state.monsters} />
+        <CardList monsters={filteredMonster} />
       </div>
     );
   }
