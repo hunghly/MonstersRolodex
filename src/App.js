@@ -13,15 +13,25 @@ class App extends Component {
       monsters: [],
       searchField: "",
     };
+
+    // this.handleChange = this.handleChange.bind(this); -If you did not use ES6 arrow functions, you would need to bind the context of 'this'
   }
 
   /* The componentDidMount function is called once when React renders the DOM the first time */
-  componentDidMount() {
+  componentDidMount = () => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => {
         return this.setState({ monsters: users });
       });
+  }
+
+  // handleChange(e) {
+  //   this.setState({ searchField: e.target.value });
+  // }
+
+  handleChange = e => {
+      this.setState({searchField: e.target.value});
   }
 
   render() {
@@ -33,16 +43,19 @@ class App extends Component {
       }
     });
 
-    console.log("====================================");
-    console.log("filtered monsters: " + filteredMonster);
-    console.log("====================================");
+    // const newApp = new App();
+    // console.log(newApp);
+
+    // console.log("====================================");
+    // console.log("filtered monsters: " + filteredMonster);
+    // console.log("====================================");
 
     return (
       <div className="App">
         {/* Set State is an Asynchronous event so we have to do any outputs after the rerender or you can pass a callback as the second parameter of the setState */}
         <SearchBox
           placeholder="Search Monsters..."
-          handleChange={(e) => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange}
         />
         <CardList monsters={filteredMonster} />
       </div>
