@@ -1,8 +1,14 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { CardList } from "./components/card-list/card-list.component.jsx";
-import { SearchBox } from "./components/search-box/search-box.component.jsx";
+import {
+  CardList
+} from "./components/card-list/card-list.component.jsx";
+import {
+  SearchBox
+} from "./components/search-box/search-box.component.jsx";
 
 class App extends Component {
   constructor() {
@@ -22,7 +28,9 @@ class App extends Component {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => {
-        return this.setState({ monsters: users });
+        return this.setState({
+          monsters: users
+        });
       });
   }
 
@@ -31,11 +39,16 @@ class App extends Component {
   // }
 
   handleChange = e => {
-      this.setState({searchField: e.target.value});
+    this.setState({
+      searchField: e.target.value
+    });
   }
 
   render() {
-    const { monsters, searchField } = this.state;
+    const {
+      monsters,
+      searchField
+    } = this.state;
 
     const filteredMonster = monsters.filter((monster) => {
       if (monster.name.toLowerCase().includes(searchField.toLowerCase())) {
@@ -50,16 +63,21 @@ class App extends Component {
     // console.log("filtered monsters: " + filteredMonster);
     // console.log("====================================");
 
-    return (
-      <div className="App">
-        <h1>Monsters Rolodex</h1>
-        {/* Set State is an Asynchronous event so we have to do any outputs after the rerender or you can pass a callback as the second parameter of the setState */}
-        <SearchBox
-          placeholder="Search Monsters..."
-          handleChange={this.handleChange}
-        />
-        <CardList monsters={filteredMonster} />
-      </div>
+    return ( <
+      div className = "App" >
+      <
+      h1 > Monsters Rolodex < /h1> {
+        /* Set State is an Asynchronous event so we have to do any outputs after the rerender or you can pass a callback as the second parameter of the setState */ } <
+      SearchBox placeholder = "Search Monsters..."
+      handleChange = {
+        this.handleChange
+      }
+      /> <
+      CardList monsters = {
+        filteredMonster
+      }
+      /> <
+      /div>
     );
   }
 }
